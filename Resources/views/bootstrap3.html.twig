@@ -1,0 +1,18 @@
+{% block select2_ajax_entity_widget %}
+    {% set attr = attr|merge({'class': 'form-control' ~ attr.class|default('')}) %}
+    {% if multiple %}
+        {% set attr = attr|merge({'multiple': 'multiple'}) %}
+        {% set full_name = full_name ~ '[]' %}
+    {% endif %}
+
+    {% spaceless %}
+        <select {{ block('widget_attributes') }}>
+            {% if value is iterable %}
+                {% for id, label in value %}
+                    <option {% if id == label %} data-select2-tag="true" {% else %} selected="selected" {% endif %}
+                            value="{{ id }}">{{ label }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    {% endspaceless %}
+{% endblock %}

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="cyber_app.form.type.select2"
+                 class="CyberApp\Select2Bundle\Form\Type\Select2Type" abstract="true" />
+
+        <service id="cyber_app.form.type.select2_ajax_entity"
+                 class="CyberApp\Select2Bundle\Form\Type\Select2AjaxEntityType">
+            <tag name="form.type" alias="select2_ajax_entity" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%cyber_app.select2.configs%</argument>
+        </service>
+    </services>
+</container>

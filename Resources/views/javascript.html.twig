@@ -1,0 +1,58 @@
+{% block select2_javascript %}
+    <script type="text/javascript">
+        if (! jQuery) {
+            throw new Error("jQuery is not defined");
+        }
+
+        (function ($, undefined) {
+            "use strict";
+
+            if (! $.fn.select2) {
+                throw new Error("jQuery Select2 plugin is not defined");
+            }
+
+            $(function () {
+                var $field = $("#{{ id }}");
+
+                {% block select2_javascript_prototype %}
+                    $field.select2($.extend(true, {}, {{ configs|json_encode|raw }}, typeof($configs) === 'undefined' ? {} : $configs));
+                {% endblock %}
+            });
+        })(jQuery);
+    </script>
+{% endblock %}
+
+{% block select2_ajax_entity_javascript %}
+    <script type="text/javascript">
+        if (! jQuery) {
+            throw new Error("jQuery is not defined");
+        }
+
+        (function ($, undefined) {
+            "use strict";
+
+            if (! $.fn.select2) {
+                throw new Error("jQuery Select2 plugin is not defined");
+            }
+
+            $(function () {
+                var $field = $("#{{ id }}");
+
+                {% block select2_ajax_entity_javascript_prototype %}
+                    {% if remote_path is empty %}
+                        {% set remote_path = url(remote_route, remote_params) %}
+                    {% endif %}
+
+                    $field.select2($.extend(true, {
+                        ajax: {
+                            url: '{{ remote_path }}',
+                            cache: true,
+                            delay: 250,
+                            dataType: 'json'
+                        }
+                    }, {{ configs|json_encode|raw }}, typeof($configs) === 'undefined' ? {} : $configs));
+                {% endblock %}
+            });
+        })(jQuery);
+    </script>
+{% endblock %}

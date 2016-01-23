@@ -1,0 +1,24 @@
+{
+    "name": "cyberapp/select2-bundle",
+    "description": "Symfony2 Select2 Bundle",
+    "keywords": ["Form", "Select2", "Ajax"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Novichkov",
+            "email": "snovichkov@cyberapp.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "doctrine/orm": "~2.2",
+        "symfony/symfony": "~2.7",
+        "genemu/form-bundle": "~2.2",
+        "doctrine/doctrine-bundle": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "CyberApp\\Select2Bundle\\": ""
+        }
+    }
+}
